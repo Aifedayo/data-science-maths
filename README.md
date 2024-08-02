@@ -30,3 +30,6 @@ If it between a min and max, it is called a Range
 #### Uses of Percentile:
 1. Removing outliers
 2. General data analysis
+
+#### Mode: 
+means most frequently occuring value in a datast
