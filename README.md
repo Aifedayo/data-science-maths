@@ -32,4 +32,4 @@ If it between a min and max, it is called a Range
 2. General data analysis
 
 #### Mode: 
-means most frequently occuring value in a datast
+means most frequently occurring value in a dataset
