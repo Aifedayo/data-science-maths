@@ -7,4 +7,11 @@ df = pd.DataFrame({
 })
 
 df.describe()
-print(df.Score.quantile(.40))
+print(df.Score.quantile(.40, interpolation="lower"))
+
+print(df[df.Score > df.Score.quantile(0.9)])
+
+## Create a new dataframe with no outlier
+df_no_outlier = df[df.Score <= df.Score.quantile(.90)]
+print(df_no_outlier)
+
