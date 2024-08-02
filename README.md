@@ -23,3 +23,10 @@ In the above dataset:
 - the 0th percentile is `Akeem 50`
 - the 50th percentile is between `Abdullah 76 and Abdurrahman 77`
 - the 25th percentile is `Akeem 50 and Zainab 68` : by multiplying the total number of our datasets by 0.25
+
+Interquartile Range (IQR) which is the value(s) between the 25th percentile and the 75th percentile 
+If it between a min and max, it is called a Range
+
+#### Uses of Percentile:
+1. Removing outliers
+2. General data analysis
