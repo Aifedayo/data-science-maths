@@ -15,3 +15,13 @@ print(df[df.Score > df.Score.quantile(0.9)])
 df_no_outlier = df[df.Score <= df.Score.quantile(.90)]
 print(df_no_outlier)
 
+# Filling a missing value
+df.loc[0, "Score"] = np.nan # Creating a nan value first
+
+df_new = df.fillna(df.Score.median())
+
+print(df_new)
+
+
+
+
