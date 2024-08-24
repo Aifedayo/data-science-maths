@@ -27,8 +27,8 @@ const onClickedEstimatePrice = async () => {
     const location = document.getElementById("uiLocations");
     const estPrice = document.getElementById("uiEstimatedPrice");
   
-    const url = "http://127.0.0.1:5000/predict_home_price"; //Use this if you are NOT using nginx which is first 7 tutorials
-    // var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+    // const url = "http://127.0.0.1:5000/predict_home_price"; //Use this if you are NOT using nginx which is first 7 tutorials
+    var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
 
     const formData = new URLSearchParams({
         total_sqft: parseFloat(sqft.value),
@@ -54,8 +54,8 @@ const onClickedEstimatePrice = async () => {
   
 const onPageLoad = async () => {
     console.log( "document loaded" );
-    const url = "http://127.0.0.1:5000/get_location_names"; // Use this if you are NOT using nginx which is first 7 tutorials
-    // var url = "/api/get_location_names"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+    // const url = "http://127.0.0.1:5000/get_location_names"; // Use this if you are NOT using nginx which is first 7 tutorials
+    var url = "/api/get_location_names"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
     try {
         const response = await fetch(url);
         const data = await response.json();
