@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
+import util
 
 app = Flask(__name__)
 
 @app.route('/hello')
-def hello():
+def get_location_names():
+    response = jsonify({
+        'locations': util.get_location_names()
+    })
+    response.headers.add('Access-Control-Allow-Origin')
     return "Hi"
 
 
