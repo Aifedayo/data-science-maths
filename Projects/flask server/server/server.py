@@ -17,7 +17,7 @@ def predict_home_price():
     location = (request.form['location'])
     BHK = float(request.form['BHK'])
     bath = float(request.form['bath'])
-
+    print('Predicting prices...')
     response = jsonify({
         'estimated_price': util.get_estimated_prices(location, total_sqft, BHK, bath)
     })
@@ -27,4 +27,5 @@ def predict_home_price():
 
 if __name__ == '__main__':
     print("Starting Python Flask Server for Home Price Prediction")
+    util.load_saved_artifacts()
     app.run()
