@@ -7,7 +7,7 @@ def find_outliers(col_name, df):
     q3 = df[col_name].quantile(0.75)
     iqr = q3 - q1
     upper_limit = q3 + 1.5*iqr
-    lower_limit = 1.5*iqr - q1
+    lower_limit = q1 - 1.5*iqr
     print(f'upper_limit: ', {upper_limit})
     print(f'lower_limit: ', {lower_limit})
     outliers = df[(df[col_name] > upper_limit) | (df[col_name] < lower_limit)]
@@ -28,8 +28,8 @@ def clean_owner_col(owner):
 
 def clean_year_owned(col_name, df):
     year_now = datetime.now().year
-    df.col_name = df.col_name.apply(lambda x: year_now - x)
-    return df.col_name.info()
+    df[col_name] = df[col_name].apply(lambda x: year_now - x)
+    return df[col_name]
 
 
 def display_outliers(df, plt):
