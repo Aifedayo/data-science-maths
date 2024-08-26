@@ -35,7 +35,7 @@ const onPageLoad = async () => {
 //     return null; // Return null if no valid year is selected
 // };
 
-const checkLength = () =>{
+const checkLength = () => {
     const kmDrivenInput = document.getElementById('km_driven');
     const maxLength = 8;
 
@@ -45,5 +45,21 @@ const checkLength = () =>{
     }
 }
 
+ const validateForm = () => {
+    const form = document.getElementById('carForm');
+    const requiredFields = form.querySelectorAll('[required]');
+
+    for (let field in requiredFields) {
+        if (!field.value.trim()) {
+            field.focus();
+            return false;
+        }
+    }
+    return true;
+ }
+
+const onClickedEstimatePrice = () => {
+    console.log('Estimate button clicked!');
+}
 
 window.onload = onPageLoad;

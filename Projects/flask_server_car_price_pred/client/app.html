@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="form-container">
-        <form>
+        <form id="carForm" onsubmit="validateForm()">
             <h2>Car Price Prediction Form</h2>
 
             <!-- Brand Name Dropdown -->
             <label for="brand" class="label__title">Brand:</label>
-            <select id="uiCarBrands" name="brand">
+            <select id="uiCarBrands" name="brand" required>
                 <option value="" disabled="disabled" selected="selected">Choose a Car Brand</option>
                     <option value="toyota">Toyota</option>
                     <option value="honda">Honda</option>
@@ -25,7 +25,7 @@
 
             <!-- Year Dropdown -->
             <label for="year" class="label__title">Year:</label>
-            <select id="uiYear" name="year">
+            <select id="uiYear" name="year" required>
                 <option value="">Select Year</option>
                 <!-- Generate years from 1999 to 2100 -->
                 <script>
@@ -38,7 +38,7 @@
 
             <!-- KM Driven -->
             <label for="km_driven" class="label__title">KM Driven:</label>
-            <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500" oninput="checkLength()">
+            <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500" oninput="checkLength()" required>
 
             <!-- Transmission Checkbox -->
             <label class="label__title">Transmission:</label>
@@ -83,7 +83,7 @@
             <label><input type="checkbox" name="fuel" value="CNG"> CNG</label>
             <label><input type="checkbox" name="fuel" value="LPG"> LPG</label>
 
-            <button type="submit">Predict Price</button>
+            <button type="submit" onclick="onClickedEstimatePrice()">Predict Price</button>
         </form>
         <!-- Estimated Price Section -->
         <div id="priceSection" class="price-container">
