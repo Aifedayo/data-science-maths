@@ -15,7 +15,23 @@ def get_car_brand_name():
 
 @app.route('/predict_car_price', methods=['POST'])
 def predict_car_price():
-    pass
+    name = request.form['name']
+    km_driven = request.form['km_driven']
+    transmission = request.form['transmission']
+    owner = request.form['owner']
+    seats = request.form['seats']
+    mileage = float(request.form['mileage'])
+    engine = request.form['engine']
+    seller_type = request.form['seller_type']
+    response = jsonify({
+        'estimated_price': util.get_estimated_price(
+            name, km_driven, transmission, owner, seats, mileage,
+            engine, seller_type
+        )
+    })
+
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
