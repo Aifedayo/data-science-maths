@@ -28,8 +28,8 @@ def get_estimated_price(
         name, year, km_driven, transmission, owner, seats, mileage, engine, seller_type, fuel):
     
     try:
-        name_idx = __data_columns.index('name_'+ name)
-        fuel_idx = __data_columns.index('fuel_'+ fuel)
+        name_idx = __data_columns.index(name)
+        fuel_idx = __data_columns.index(fuel)
         seller_type_idx = __data_columns.index('seller_type_'+seller_type)
     except:
         name_idx = -1

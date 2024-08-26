@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Details Form</title>
     <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
 </head>
 <body>
     <div class="form-container">
         <form>
-            <h2>Car Details Form</h2>
+            <h2>Car Price Prediction Form</h2>
 
             <!-- Brand Name Dropdown -->
             <label for="brand" class="label__title">Brand:</label>
-            <select id="brand" name="brand">
-                <option value="toyota">Toyota</option>
-                <option value="honda">Honda</option>
-                <option value="ford">Ford</option>
-                <option value="bmw">BMW</option>
-                <option value="audi">Audi</option>
-                <!-- Add more brands as needed -->
+            <select id="uiCarBrands" name="brand">
+                <option value="" disabled="disabled" selected="selected">Choose a Car Brand</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="honda">Honda</option>
+                    <option value="ford">Ford</option>
+                    <option value="bmw">BMW</option>
+                    <option value="audi">Audi</option>
             </select>
 
             <!-- Year Dropdown -->
@@ -82,8 +83,13 @@
             <label><input type="checkbox" name="fuel" value="CNG"> CNG</label>
             <label><input type="checkbox" name="fuel" value="LPG"> LPG</label>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Predict Price</button>
         </form>
+        <!-- Estimated Price Section -->
+        <div id="priceSection" class="price-container">
+            <h3>Estimated Price:</h3>
+            <p id="estimatedPrice">Please fill out the form to see the estimated price.</p>
+        </div>
     </div>
 </body>
 </html>
