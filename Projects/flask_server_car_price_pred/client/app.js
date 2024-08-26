@@ -13,6 +13,7 @@ const onPageLoad = async () => {
             defaultOption.disabled = true;
             defaultOption.selected = true;
             uiCarBrands.appendChild(defaultOption);
+
             car_brands.forEach(car_brand => {
                 const opt = new Option(car_brand);
                 uiCarBrands.appendChild(opt);
@@ -22,5 +23,16 @@ const onPageLoad = async () => {
         console.error('Error: ', error)
     }
 }
+
+const getYearValue = () => {
+    const uiYear = document.getElementById('uiYear');
+    const selectedYear = parseInt(uiYear.value, 10); // Get the selected year as an integer
+    const currentYear = new Date().getFullYear(); // Get the current year
+
+    if (!isNaN(selectedYear)) {
+        return currentYear - selectedYear; // Return the difference
+    }
+    return null; // Return null if no valid year is selected
+};
 
 window.onload = onPageLoad;
