@@ -9,7 +9,10 @@ const onPageLoad = async () => {
             const car_brands = data.car_brands;
             const uiCarBrands = document.getElementById('uiCarBrands');
             uiCarBrands.innerHTML = '';
-
+            const defaultOption = new Option('Choose a Car Brand', "");
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            uiCarBrands.appendChild(defaultOption);
             car_brands.forEach(car_brand => {
                 const opt = new Option(car_brand);
                 uiCarBrands.appendChild(opt);
