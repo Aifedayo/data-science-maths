@@ -35,5 +35,15 @@ const onPageLoad = async () => {
 //     return null; // Return null if no valid year is selected
 // };
 
+const checkLength = () =>{
+    const kmDrivenInput = document.getElementById('km_driven');
+    const maxLength = 8;
+
+    if (kmDrivenInput.value.length > maxLength) {
+        kmDrivenInput.value = kmDrivenInput.value.slice(0, maxLength);
+        alert('KM Driven cannot exceed 7 digits.')
+    }
+}
+
 
 window.onload = onPageLoad;

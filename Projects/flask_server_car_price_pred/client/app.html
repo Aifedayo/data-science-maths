@@ -29,7 +29,7 @@
                 <option value="">Select Year</option>
                 <!-- Generate years from 1999 to 2100 -->
                 <script>
-                    const yearSelect = document.getElementById("year");
+                    const yearSelect = document.getElementById("uiYear");
                     for (let year = 1999; year <= 2100; year++) {
                         yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
                     }
@@ -38,7 +38,7 @@
 
             <!-- KM Driven -->
             <label for="km_driven" class="label__title">KM Driven:</label>
-            <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500">
+            <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500" oninput="checkLength()">
 
             <!-- Transmission Checkbox -->
             <label class="label__title">Transmission:</label>
