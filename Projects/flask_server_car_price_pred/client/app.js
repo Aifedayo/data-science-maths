@@ -41,7 +41,7 @@ const checkLength = () =>{
 
     if (kmDrivenInput.value.length > maxLength) {
         kmDrivenInput.value = kmDrivenInput.value.slice(0, maxLength);
-        alert('KM Driven cannot exceed 7 digits.')
+        alert('KM Driven cannot exceed 8 digits.')
     }
 }
 
