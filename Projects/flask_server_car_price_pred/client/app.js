@@ -24,15 +24,16 @@ const onPageLoad = async () => {
     }
 }
 
-const getYearValue = () => {
-    const uiYear = document.getElementById('uiYear');
-    const selectedYear = parseInt(uiYear.value, 10); // Get the selected year as an integer
-    const currentYear = new Date().getFullYear(); // Get the current year
+// const getYearValue = () => {
+//     const uiYear = document.getElementById('uiYear');
+//     const selectedYear = parseInt(uiYear.value, 10); // Get the selected year as an integer
+//     const currentYear = new Date().getFullYear(); // Get the current year
 
-    if (!isNaN(selectedYear)) {
-        return currentYear - selectedYear; // Return the difference
-    }
-    return null; // Return null if no valid year is selected
-};
+//     if (!isNaN(selectedYear)) {
+//         return currentYear - selectedYear; // Return the difference
+//     }
+//     return null; // Return null if no valid year is selected
+// };
+
 
 window.onload = onPageLoad;
