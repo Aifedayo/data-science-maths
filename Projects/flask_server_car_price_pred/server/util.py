@@ -26,6 +26,7 @@ def load_saved_artifacts():
 
 def get_estimated_price(
         name, year, km_driven, transmission, owner, seats, mileage, engine, seller_type, fuel):
+    
     try:
         name_idx = __data_columns.index('name_'+ name)
         fuel_idx = __data_columns.index('fuel_'+ fuel)
@@ -53,11 +54,11 @@ def get_estimated_price(
         x[seller_type_idx] = 1.0
 
     x_df = pd.DataFrame([x], columns=__data_columns)
-    print(x_df)
-    return __model.predict(x_df)[0]
+
+    return round(__model.predict(x_df)[0], 2)
+
     
 if __name__ == '__main__':
     load_saved_artifacts()
     print(get_car_brand_name())
     print(get_estimated_price(name='Maruti', year=13, km_driven=145500, owner=1, seats=5, mileage=22, engine=1000, seller_type='Individual', transmission=1, fuel='Petrol'))
-    
