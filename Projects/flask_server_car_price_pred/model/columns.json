@@ -1,0 +1,25 @@
+{
+    "data_columns": [
+        "year",
+        "km_driven",
+        "transmission",
+        "owner",
+        "seats",
+        "mileage",
+        "engine (cc)",
+        "name_ford",
+        "name_honda",
+        "name_hyundai",
+        "name_mahindra",
+        "name_maruti",
+        "name_renault",
+        "name_tata",
+        "name_toyota",
+        "name_volkswagen",
+        "fuel_diesel",
+        "fuel_lpg",
+        "fuel_petrol",
+        "seller_type_individual",
+        "seller_type_trustmark dealer"
+    ]
+}
