@@ -12,7 +12,7 @@
             <h2>Car Details Form</h2>
 
             <!-- Brand Name Dropdown -->
-            <label for="brand">Brand:</label>
+            <label for="brand" class="label__title">Brand:</label>
             <select id="brand" name="brand">
                 <option value="toyota">Toyota</option>
                 <option value="honda">Honda</option>
@@ -23,7 +23,7 @@
             </select>
 
             <!-- Year Dropdown -->
-            <label for="year">Year:</label>
+            <label for="year" class="label__title">Year:</label>
             <select id="year" name="year">
                 <option value="">Select Year</option>
                 <!-- Generate years from 1999 to 2100 -->
@@ -36,16 +36,16 @@
             </select>
 
             <!-- KM Driven -->
-            <label for="km_driven">KM Driven:</label>
-            <input type="number" id="km_driven" name="km_driven">
+            <label for="km_driven" class="label__title">KM Driven:</label>
+            <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500">
 
             <!-- Transmission Checkbox -->
-            <label>Transmission:</label>
-            <label><input type="checkbox" name="transmission" value="manual"> Manual</label>
-            <label><input type="checkbox" name="transmission" value="automatic"> Automatic</label>
+            <label class="label__title">Transmission:</label>
+            <label><input type="checkbox" name="transmission" value="1"> Manual</label>
+            <label><input type="checkbox" name="transmission" value="0"> Automatic</label>
 
             <!-- Owner Checkbox -->
-            <label>Owner:</label>
+            <label class="label__title">Owner:</label>
             <label><input type="checkbox" name="owner" value="1"> First Owner</label>
             <label><input type="checkbox" name="owner" value="2"> Second Owner</label>
             <label><input type="checkbox" name="owner" value="3"> Third Owner</label>
@@ -53,7 +53,7 @@
             <label><input type="checkbox" name="owner" value="5"> Test Drive</label>
 
             <!-- Seat Checkbox -->
-            <label>Seat:</label>
+            <label class="label__title">Seats:</label>
             <label><input type="checkbox" name="seat" value="4"> 4</label>
             <label><input type="checkbox" name="seat" value="5"> 5</label>
             <label><input type="checkbox" name="seat" value="6"> 6</label>
@@ -62,25 +62,25 @@
             <label><input type="checkbox" name="seat" value="9"> 9</label>
 
             <!-- Mileage -->
-            <label for="mileage">Mileage (km/l):</label>
-            <input type="number" id="mileage" name="mileage">
+            <label for="mileage" class="label__title">Mileage (km/l):</label>
+            <input type="number" id="mileage" name="mileage" placeholder="MPG e.g 23">
 
             <!-- Engine -->
-            <label for="engine">Engine:</label>
+            <label for="engine" class="label__title">Engine:</label>
             <input type="number" id="engine" name="engine" placeholder="Horsepower">
 
             <!-- Seller Type Checkbox -->
-            <label>Seller Type:</label>
-            <label><input type="checkbox" name="seller_type" value="individual"> Individual</label>
-            <label><input type="checkbox" name="seller_type" value="dealer"> Dealer</label>
-            <label><input type="checkbox" name="seller_type" value="trustmark_dealer"> Trustmark Dealer</label>
+            <label class="label__title">Seller Type:</label>
+            <label><input type="checkbox" name="seller_type" value="Individual"> Individual</label>
+            <label><input type="checkbox" name="seller_type" value="Dealer"> Dealer</label>
+            <label><input type="checkbox" name="seller_type" value="Trustmark_dealer"> Trustmark Dealer</label>
 
             <!-- Fuel Checkbox -->
-            <label>Fuel:</label>
-            <label><input type="checkbox" name="fuel" value="petrol"> Petrol</label>
-            <label><input type="checkbox" name="fuel" value="diesel"> Diesel</label>
-            <label><input type="checkbox" name="fuel" value="cng"> CNG</label>
-            <label><input type="checkbox" name="fuel" value="lpg"> LPG</label>
+            <label class="label__title">Fuel:</label>
+            <label><input type="checkbox" name="fuel" value="Petrol"> Petrol</label>
+            <label><input type="checkbox" name="fuel" value="Diesel"> Diesel</label>
+            <label><input type="checkbox" name="fuel" value="CNG"> CNG</label>
+            <label><input type="checkbox" name="fuel" value="LPG"> LPG</label>
 
             <button type="submit">Submit</button>
         </form>
