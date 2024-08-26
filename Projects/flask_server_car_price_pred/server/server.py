@@ -15,7 +15,7 @@ def get_car_brand_name():
 
 @app.route('/predict_car_price', methods=['POST'])
 def predict_car_price():
-    
+    pass
 
 
 if __name__ == '__main__':
