@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details Form</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="form-container">
+        <form>
+            <h2>Car Details Form</h2>
+
+            <!-- Brand Name Dropdown -->
+            <label for="brand">Brand:</label>
+            <select id="brand" name="brand">
+                <option value="toyota">Toyota</option>
+                <option value="honda">Honda</option>
+                <option value="ford">Ford</option>
+                <option value="bmw">BMW</option>
+                <option value="audi">Audi</option>
+                <!-- Add more brands as needed -->
+            </select>
+
+            <!-- Year Dropdown -->
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option value="">Select Year</option>
+                <!-- Generate years from 1999 to 2100 -->
+                <script>
+                    const yearSelect = document.getElementById("year");
+                    for (let year = 1999; year <= 2100; year++) {
+                        yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+                    }
+                </script>
+            </select>
+
+            <!-- KM Driven -->
+            <label for="km_driven">KM Driven:</label>
+            <input type="number" id="km_driven" name="km_driven">
+
+            <!-- Transmission Checkbox -->
+            <label>Transmission:</label>
+            <label><input type="checkbox" name="transmission" value="manual"> Manual</label>
+            <label><input type="checkbox" name="transmission" value="automatic"> Automatic</label>
+
+            <!-- Owner Checkbox -->
+            <label>Owner:</label>
+            <label><input type="checkbox" name="owner" value="1"> First Owner</label>
+            <label><input type="checkbox" name="owner" value="2"> Second Owner</label>
+            <label><input type="checkbox" name="owner" value="3"> Third Owner</label>
+            <label><input type="checkbox" name="owner" value="4"> Fourth Owner & Above</label>
+            <label><input type="checkbox" name="owner" value="5"> Test Drive</label>
+
+            <!-- Seat Checkbox -->
+            <label>Seat:</label>
+            <label><input type="checkbox" name="seat" value="4"> 4</label>
+            <label><input type="checkbox" name="seat" value="5"> 5</label>
+            <label><input type="checkbox" name="seat" value="6"> 6</label>
+            <label><input type="checkbox" name="seat" value="7"> 7</label>
+            <label><input type="checkbox" name="seat" value="8"> 8</label>
+            <label><input type="checkbox" name="seat" value="9"> 9</label>
+
+            <!-- Mileage -->
+            <label for="mileage">Mileage (km/l):</label>
+            <input type="number" id="mileage" name="mileage">
+
+            <!-- Engine -->
+            <label for="engine">Engine:</label>
+            <input type="number" id="engine" name="engine" placeholder="Horsepower">
+
+            <!-- Seller Type Checkbox -->
+            <label>Seller Type:</label>
+            <label><input type="checkbox" name="seller_type" value="individual"> Individual</label>
+            <label><input type="checkbox" name="seller_type" value="dealer"> Dealer</label>
+            <label><input type="checkbox" name="seller_type" value="trustmark_dealer"> Trustmark Dealer</label>
+
+            <!-- Fuel Checkbox -->
+            <label>Fuel:</label>
+            <label><input type="checkbox" name="fuel" value="petrol"> Petrol</label>
+            <label><input type="checkbox" name="fuel" value="diesel"> Diesel</label>
+            <label><input type="checkbox" name="fuel" value="cng"> CNG</label>
+            <label><input type="checkbox" name="fuel" value="lpg"> LPG</label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
