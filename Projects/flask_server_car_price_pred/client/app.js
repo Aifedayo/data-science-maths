@@ -38,6 +38,7 @@ const onClickedEstimatePrice =  async () => {
     const seller_type = Array.from(document.querySelectorAll('input[name="seller_type"]:checked')).map(el => el.value);
     const fuel = Array.from(document.querySelectorAll('input[name="fuel"]:checked')).map(el => el.value);
 
+    const estimatedPrice = document.getElementById('estimatedPrice')
     // Calculate year difference
     const yearDifference = year ? currentYear - year : '';
 
@@ -63,6 +64,7 @@ const onClickedEstimatePrice =  async () => {
             body: formData
         });
         const data = await response.json();
+        estimatedPrice.innerHTML = data.estimated_price
     } catch (error) {
         console.error('Error: ', error)
     }
