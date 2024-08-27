@@ -40,27 +40,27 @@
             <label for="km_driven" class="label__title">KM Driven:</label>
             <input type="number" id="km_driven" name="km_driven" placeholder="KM Driven e.g 134500" oninput="checkLength()" required>
 
-            <!-- Transmission Checkbox -->
+            <!-- Transmission radio -->
             <label class="label__title">Transmission:</label>
-            <label><input type="checkbox" name="transmission" value="1"> Manual</label>
-            <label><input type="checkbox" name="transmission" value="0"> Automatic</label>
+            <label><input type="radio" name="transmission" value="1"> Manual</label>
+            <label><input type="radio" name="transmission" value="0"> Automatic</label>
 
-            <!-- Owner Checkbox -->
+            <!-- Owner radio -->
             <label class="label__title">Owner:</label>
-            <label><input type="checkbox" name="owner" value="1"> First Owner</label>
-            <label><input type="checkbox" name="owner" value="2"> Second Owner</label>
-            <label><input type="checkbox" name="owner" value="3"> Third Owner</label>
-            <label><input type="checkbox" name="owner" value="4"> Fourth Owner & Above</label>
-            <label><input type="checkbox" name="owner" value="5"> Test Drive</label>
+            <label><input type="radio" name="owner" value="1"> First Owner</label>
+            <label><input type="radio" name="owner" value="2"> Second Owner</label>
+            <label><input type="radio" name="owner" value="3"> Third Owner</label>
+            <label><input type="radio" name="owner" value="4"> Fourth Owner & Above</label>
+            <label><input type="radio" name="owner" value="5"> Test Drive</label>
 
-            <!-- Seat Checkbox -->
+            <!-- Seat radio -->
             <label class="label__title">Seats:</label>
-            <label><input type="checkbox" name="seat" value="4"> 4</label>
-            <label><input type="checkbox" name="seat" value="5"> 5</label>
-            <label><input type="checkbox" name="seat" value="6"> 6</label>
-            <label><input type="checkbox" name="seat" value="7"> 7</label>
-            <label><input type="checkbox" name="seat" value="8"> 8</label>
-            <label><input type="checkbox" name="seat" value="9"> 9</label>
+            <label><input type="radio" name="seat" value="4"> 4</label>
+            <label><input type="radio" name="seat" value="5"> 5</label>
+            <label><input type="radio" name="seat" value="6"> 6</label>
+            <label><input type="radio" name="seat" value="7"> 7</label>
+            <label><input type="radio" name="seat" value="8"> 8</label>
+            <label><input type="radio" name="seat" value="9"> 9</label>
 
             <!-- Mileage -->
             <label for="mileage" class="label__title">Mileage (km/l):</label>
@@ -70,20 +70,20 @@
             <label for="engine" class="label__title">Engine:</label>
             <input type="number" id="engine" name="engine" placeholder="Horsepower">
 
-            <!-- Seller Type Checkbox -->
+            <!-- Seller Type radio -->
             <label class="label__title">Seller Type:</label>
-            <label><input type="checkbox" name="seller_type" value="Individual"> Individual</label>
-            <label><input type="checkbox" name="seller_type" value="Dealer"> Dealer</label>
-            <label><input type="checkbox" name="seller_type" value="Trustmark_dealer"> Trustmark Dealer</label>
+            <label><input type="radio" name="seller_type" value="Individual"> Individual</label>
+            <label><input type="radio" name="seller_type" value="Dealer"> Dealer</label>
+            <label><input type="radio" name="seller_type" value="Trustmark_dealer"> Trustmark Dealer</label>
 
-            <!-- Fuel Checkbox -->
+            <!-- Fuel radio -->
             <label class="label__title">Fuel:</label>
-            <label><input type="checkbox" name="fuel" value="Petrol"> Petrol</label>
-            <label><input type="checkbox" name="fuel" value="Diesel"> Diesel</label>
-            <label><input type="checkbox" name="fuel" value="CNG"> CNG</label>
-            <label><input type="checkbox" name="fuel" value="LPG"> LPG</label>
+            <label><input type="radio" name="fuel" value="Petrol"> Petrol</label>
+            <label><input type="radio" name="fuel" value="Diesel"> Diesel</label>
+            <label><input type="radio" name="fuel" value="CNG"> CNG</label>
+            <label><input type="radio" name="fuel" value="LPG"> LPG</label>
 
-            <button type="submit" onclick="onClickedEstimatePrice()">Predict Price</button>
+            <button type="button" onclick="onClickedEstimatePrice()">Predict Car Price</button>
         </form>
         <!-- Estimated Price Section -->
         <div id="priceSection" class="price-container">

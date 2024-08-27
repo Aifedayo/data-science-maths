@@ -1,3 +1,73 @@
+const checkLength = () => {
+    const kmDrivenInput = document.getElementById('km_driven');
+    const maxLength = 8;
+
+    if (kmDrivenInput.value.length > maxLength) {
+        kmDrivenInput.value = kmDrivenInput.value.slice(0, maxLength);
+        alert('KM Driven cannot exceed 8 digits.')
+    }
+};
+
+ const validateForm = () => {
+    const form = document.getElementById('carForm');
+    const requiredFields = form.querySelectorAll('[required]');
+
+    for (let field in requiredFields) {
+        if (!field.value.trim()) {
+            field.focus();
+            return false;
+        }
+    }
+    return true;
+};
+
+const onClickedEstimatePrice =  async () => {
+    console.log('Estimate button clicked!');
+    const currentYear = new Date().getFullYear();
+    const url = "http://localhost:5000/predict_car_price";
+
+// Collect values from the form elements
+    const name = document.getElementById('uiCarBrands').value;
+    const year = parseInt(document.getElementById('uiYear').value, 10);
+    const km_driven = parseInt(document.getElementById('km_driven').value, 10);
+    const transmission = document.querySelector('input[name="transmission"]:checked')?.value || '';
+    const owner = document.querySelector('input[name="owner"]:checked')?.value || '';
+    const seats = Array.from(document.querySelectorAll('input[name="seat"]:checked')).map(el => el.value);
+    const mileage = parseFloat(document.getElementById('mileage').value) || 0;
+    const engine = parseInt(document.getElementById('engine').value, 10) || 0;
+    const seller_type = Array.from(document.querySelectorAll('input[name="seller_type"]:checked')).map(el => el.value);
+    const fuel = Array.from(document.querySelectorAll('input[name="fuel"]:checked')).map(el => el.value);
+
+    // Calculate year difference
+    const yearDifference = year ? currentYear - year : '';
+
+    const formData = new URLSearchParams({
+        name: name,
+        year: yearDifference,
+        km_driven: km_driven,
+        transmission: transmission,
+        owner: owner,
+        seats: seats.join(','), // Convert array to comma-separated string
+        mileage: mileage,
+        engine: engine,
+        seller_type: seller_type.join(','), // Convert array to comma-separated string
+        fuel: fuel.join(',') // Convert array to comma-separated string
+    }).toString();
+    console.log(formData)
+    try {
+        const response = await fetch (url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+        const data = await response.json();
+    } catch (error) {
+        console.error('Error: ', error)
+    }
+};
+
 const onPageLoad = async () => {
     const url = 'http://localhost:5000/car_brand'
     try {
@@ -22,44 +92,6 @@ const onPageLoad = async () => {
     } catch (error) {
         console.error('Error: ', error)
     }
-}
-
-// const getYearValue = () => {
-//     const uiYear = document.getElementById('uiYear');
-//     const selectedYear = parseInt(uiYear.value, 10); // Get the selected year as an integer
-//     const currentYear = new Date().getFullYear(); // Get the current year
-
-//     if (!isNaN(selectedYear)) {
-//         return currentYear - selectedYear; // Return the difference
-//     }
-//     return null; // Return null if no valid year is selected
-// };
-
-const checkLength = () => {
-    const kmDrivenInput = document.getElementById('km_driven');
-    const maxLength = 8;
-
-    if (kmDrivenInput.value.length > maxLength) {
-        kmDrivenInput.value = kmDrivenInput.value.slice(0, maxLength);
-        alert('KM Driven cannot exceed 8 digits.')
-    }
-}
-
- const validateForm = () => {
-    const form = document.getElementById('carForm');
-    const requiredFields = form.querySelectorAll('[required]');
-
-    for (let field in requiredFields) {
-        if (!field.value.trim()) {
-            field.focus();
-            return false;
-        }
-    }
-    return true;
- }
-
-const onClickedEstimatePrice = () => {
-    console.log('Estimate button clicked!');
-}
+};
 
 window.onload = onPageLoad;
