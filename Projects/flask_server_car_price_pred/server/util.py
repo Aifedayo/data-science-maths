@@ -26,12 +26,15 @@ def load_saved_artifacts():
 
 def get_estimated_price(
         name, year, km_driven, transmission, owner, seats, mileage, engine, seller_type, fuel):
-    
     try:
         name_idx = __data_columns.index(name)
         fuel_idx = __data_columns.index(fuel)
-        seller_type_idx = __data_columns.index('seller_type_'+seller_type)
-    except:
+        if seller_type == 'Dealer':
+            seller_type_idx = -1
+        else:
+            seller_type_idx = __data_columns.index('seller_type_'+seller_type)
+
+    except ValueError:
         name_idx = -1
         fuel_idx = -1
         seller_type_idx = -1
@@ -52,7 +55,6 @@ def get_estimated_price(
         x[fuel_idx] = 1.0
     if seller_type_idx >= 0:
         x[seller_type_idx] = 1.0
-
     x_df = pd.DataFrame([x], columns=__data_columns)
 
     estimated_price = int(round(__model.predict(x_df)[0], 0))
@@ -62,4 +64,4 @@ def get_estimated_price(
 if __name__ == '__main__':
     load_saved_artifacts()
     print(get_car_brand_name())
-    print(get_estimated_price(name='Maruti', year=13, km_driven=145500, owner=1, seats=5, mileage=22, engine=1000, seller_type='Individual', transmission=1, fuel='Petrol'))
+    print(get_estimated_price(name='Toyota', year=2013, km_driven=145500, owner=1, seats=5, mileage=22, engine=1000, seller_type='Individual', transmission=1, fuel='Petrol'))
