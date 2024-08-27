@@ -23,7 +23,6 @@ const checkLength = () => {
 
 const onClickedEstimatePrice =  async () => {
     console.log('Estimate button clicked!');
-    const currentYear = new Date().getFullYear();
     const url = "http://localhost:5000/predict_car_price";
 
 // Collect values from the form elements
@@ -38,13 +37,11 @@ const onClickedEstimatePrice =  async () => {
     const seller_type = Array.from(document.querySelectorAll('input[name="seller_type"]:checked')).map(el => el.value);
     const fuel = Array.from(document.querySelectorAll('input[name="fuel"]:checked')).map(el => el.value);
 
-    const estimatedPrice = document.getElementById('estimatedPrice')
-    // Calculate year difference
-    const yearDifference = year ? currentYear - year : '';
+    const estimatedPrice = document.getElementById('estimatedPrice');
 
     const formData = new URLSearchParams({
         name: name,
-        year: yearDifference,
+        year: year,
         km_driven: km_driven,
         transmission: transmission,
         owner: owner,
@@ -95,5 +92,37 @@ const onPageLoad = async () => {
         console.error('Error: ', error)
     }
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('carForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const requiredFields = form.querySelectorAll('[required]');
+
+    function checkRequiredFields() {
+        let allFilled = true;
+
+        requiredFields.forEach((field) => {
+            if (field.type === "checkbox") {
+                // For checkboxes, ensure at least one is checked
+                const checkboxes = form.querySelectorAll(`input[name="${field.name}"]:checked`);
+                if (checkboxes.length === 0) {
+                    allFilled = false;
+                }
+            } else if (!field.value.trim()) {
+                allFilled = false;
+            }
+        });
+
+        submitBtn.disabled = !allFilled;
+    }
+
+    requiredFields.forEach((field) => {
+        field.addEventListener('input', checkRequiredFields);
+        if (field.type === "checkbox") {
+            field.addEventListener('change', checkRequiredFields);
+        }
+    });
+});
+
 
 window.onload = onPageLoad;

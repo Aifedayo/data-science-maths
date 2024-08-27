@@ -55,7 +55,8 @@ def get_estimated_price(
 
     x_df = pd.DataFrame([x], columns=__data_columns)
 
-    return round(__model.predict(x_df)[0], 2)
+    estimated_price = int(round(__model.predict(x_df)[0], 0))
+    return f"{estimated_price:,}"
 
     
 if __name__ == '__main__':

@@ -27,7 +27,7 @@ def predict_car_price():
     fuel = request.form['fuel']
 
     response = jsonify({
-        'estimated_price': float(util.get_estimated_price(
+        'estimated_price': (util.get_estimated_price(
             name, year, km_driven, transmission, owner, seats, mileage,
             engine, seller_type, fuel))
     })
