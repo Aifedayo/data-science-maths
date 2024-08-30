@@ -1,0 +1,20 @@
+{
+    "Colors": {
+        "Green": 1,
+        "Pink": 2,
+        "Purple": 3,
+        "Red": 4,
+        "Golden": 5,
+        "Blue": 6,
+        "Sky blue": 7,
+        "Silver": 8,
+        "Beige": 9,
+        "Orange": 10,
+        "Carnelian red": 11,
+        "Black": 12,
+        "Brown": 13,
+        "White": 14,
+        "Yellow": 15,
+        "Grey": 16
+    }
+}

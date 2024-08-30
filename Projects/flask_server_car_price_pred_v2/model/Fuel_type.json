@@ -5,7 +5,7 @@
         "LPG": 3,
         "Petrol": 4,
         "Hydrogen": 5,
-        "Diesel": 6,
-        "Plug-in Hybrid": 7
+        "Plug-in Hybrid": 6,
+        "Diesel": 7
     }
 }
