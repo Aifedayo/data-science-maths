@@ -26,9 +26,16 @@ _artifacts = {
     "model_rfr": None
 }
 
-def get_exact_value(column, name, key):
+def get_object_keys(obj):
+    return _artifacts.get(obj, [])
+
+def get_exact_value(col_name, dict_name, key):
     """Returns the exact value from a nested dictionary, defaults to 0 if the key is not found."""
-    return column.get(name, {}).get(key, 0)
+    return _artifacts.get(col_name, {}).get(dict_name, {}).get(key, 0)
+
+def get_manufacturer_models(manufacturer_name):
+    manufacturer_name = manufacturer_name.upper()
+    return _artifacts['manufacturers_to_models_columns'].get(manufacturer_name, [])
 
 def load_json_artifact(filepath):
     """Loads a JSON file and returns its contents."""
@@ -38,6 +45,7 @@ def load_json_artifact(filepath):
 def load_artifacts():
     """Loads all necessary artifacts for the model and assigns them to global variables."""
     global _artifacts
+    print('Loading artifacts...')
     
     # Load JSON artifacts
     _artifacts['manufacturers_columns'] = load_json_artifact('artifacts/Manufacturer.json')
@@ -63,7 +71,6 @@ def load_artifacts():
     _artifacts['scaler'] = joblib.load('artifacts/mileage_scaler.pkl')
     _artifacts['model_rfr'] = joblib.load('artifacts/model_rfr.pkl')
     _artifacts['model_xgb'] = joblib.load('artifacts/model_xgb.pkl')
-
 
 
 def predict_used_car_price(**kwargs):
@@ -127,22 +134,24 @@ def predict_used_car_price(**kwargs):
 
 if __name__ == '__main__':
     load_artifacts()
+    print(get_object_keys('colors'))
     # print(_artifacts['colors_columns'])
-    # print(get_exact_value(_artifacts['colors_columns'], 'Colors', 'Redui'))
-    # print(_artifacts['fuels'])
+    print(get_exact_value('gear_box_types_columns', 'Gear_box_types','Automatic'))
+    print(get_manufacturer_models('acura'))
+    # print('>>>>>>>>>>>....', _artifacts['colors'])
     # print(_artifacts['data_columns'])
-    print(predict_used_car_price(
-        levy=1234,
-        manufacturer='HonDa', 
-        model='Civic', 
-        category='sedan',
-        prod_year=2018, 
-        fuel_type='Petrol', 
-        color='Yellow', 
-        engine_volume=3.5, 
-        drive_wheel='4x4', 
-        airbag=10, 
-        cylinder=12, 
-        mileage=145000, 
-        interior='Leather')
-    )
+    # print(predict_used_car_price(
+    #     levy=1234,
+    #     manufacturer='HonDa', 
+    #     model='Civic', 
+    #     category='sedan',
+    #     prod_year=2018, 
+    #     fuel_type='Petrol', 
+    #     color='Yellow', 
+    #     engine_volume=3.5, 
+    #     drive_wheel='4x4', 
+    #     airbag=10, 
+    #     cylinder=12, 
+    #     mileage=145000, 
+    #     interior='Leather')
+    # )
