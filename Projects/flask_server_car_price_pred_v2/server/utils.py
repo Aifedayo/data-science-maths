@@ -3,100 +3,68 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# global variables
-__manufacturers = None
-__models = None
-__categories = None
-__colors = None
-__fuels = None
-__gear_boxes = None
-__drive_wheels = None
-
-# Variable for models
-__model_xgb = None
-__model_rfr = None
-
-
-# json columns
-__data_columns = None
-__manufacturers_to_models_columns = None
-__manufacturers_columns = None
-__models_columns = None
-__categories_columns = None
-__colors_columns = None
-__gear_box_types_columns = None
-__fuel_types_columns = None
-__drive_wheels_columns = None
-
+# Global variables
+_artifacts = {
+    "manufacturers": None,
+    "models": None,
+    "categories": None,
+    "colors": None,
+    "fuels": None,
+    "gear_boxes": None,
+    "drive_wheels": None,
+    "manufacturers_columns": None,
+    "models_columns": None,
+    "categories_columns": None,
+    "colors_columns": None,
+    "fuel_types_columns": None,
+    "gear_box_types_columns": None,
+    "drive_wheels_columns": None,
+    "data_columns": None,
+    "manufacturers_to_models_columns": None,
+    "model_xgb": None,
+    "model_rfr": None
+}
 
 def get_exact_value(column, name, key):
-    value = column[name].get(key, 0)
-    return value
+    """Returns the exact value from a nested dictionary, defaults to 0 if the key is not found."""
+    return column.get(name, {}).get(key, 0)
+
+def load_json_artifact(filepath):
+    """Loads a JSON file and returns its contents."""
+    with open(filepath, 'r') as file:
+        return json.load(file)
 
 def load_artifacts():
-    global __manufacturers_columns
-    global __models_columns
-    global __categories_columns
-    global __colors_columns
-    global __fuel_types_columns
-    global __gear_box_types_columns
-    global __drive_wheels_columns
-
-    global __manufacturers
-    global __models
-    global __categories
-    global __colors
-    global __fuels
-    global __drive_wheels
-    global __gear_boxes
+    """Loads all necessary artifacts for the model and assigns them to global variables."""
+    global _artifacts
     
-    with open('artifacts/Manufacturer.json') as f:
-        __manufacturers_columns = json.load(f)
-        __manufacturers = list(__manufacturers_columns['Manufacturers'].keys())
-    
-    with open('artifacts/Model.json') as f:
-        __models_columns = json.load(f)
-        __models = list(__models_columns['Models'].keys())
-    
-    with open('artifacts/Category.json') as f:
-        __categories_columns = json.load(f)
-        __categories = list(__categories_columns['Categorys'].keys())
-    
-    with open('artifacts/Color.json') as f:
-        __colors_columns = json.load(f)
-        __colors = list(__colors_columns['Colors'].keys())
-    
-    with open('artifacts/Gear_box_type.json') as f:
-        __gear_box_types_columns = json.load(f)
-        __categories = list(__gear_box_types_columns['Gear_box_types'].keys())
-    
-    with open('artifacts/Fuel_type.json') as f:
-        __fuel_types_columns = json.load(f)
-        __fuels = list(__fuel_types_columns['Fuel_types'].keys())
-    
-    with open('artifacts/Drive_wheels.json') as f:
-        __drive_wheels_columns = json.load(f)
-        __drive_wheels = list(__drive_wheels_columns['Drive_wheelss'].keys())
+    # Load JSON artifacts
+    _artifacts['manufacturers_columns'] = load_json_artifact('artifacts/Manufacturer.json')
+    _artifacts['models_columns'] = load_json_artifact('artifacts/Model.json')
+    _artifacts['categories_columns'] = load_json_artifact('artifacts/Category.json')
+    _artifacts['colors_columns'] = load_json_artifact('artifacts/Color.json')
+    _artifacts['gear_box_types_columns'] = load_json_artifact('artifacts/Gear_box_type.json')
+    _artifacts['fuel_types_columns'] = load_json_artifact('artifacts/Fuel_type.json')
+    _artifacts['drive_wheels_columns'] = load_json_artifact('artifacts/Drive_wheels.json')
+    _artifacts['manufacturers_to_models_columns'] = load_json_artifact('artifacts/manufactures_to_models.json')
+    _artifacts['data_columns'] = load_json_artifact('artifacts/columns.json')['data_columns']
 
-    global __manufacturers_to_models_columns
-    global __data_columns
+    # Extract specific keys
+    _artifacts['manufacturers'] = list(_artifacts['manufacturers_columns']['Manufacturers'].keys())
+    _artifacts['models'] = list(_artifacts['models_columns']['Models'].keys())
+    _artifacts['categories'] = list(_artifacts['categories_columns']['Categorys'].keys())
+    _artifacts['colors'] = list(_artifacts['colors_columns']['Colors'].keys())
+    _artifacts['gear_boxes'] = list(_artifacts['gear_box_types_columns']['Gear_box_types'].keys())
+    _artifacts['fuels'] = list(_artifacts['fuel_types_columns']['Fuel_types'].keys())
+    _artifacts['drive_wheels'] = list(_artifacts['drive_wheels_columns']['Drive_wheelss'].keys())
 
-    with open('artifacts/columns.json') as f:
-        __data_columns = json.load(f)['data_columns']
-    with open('artifacts/manufactures_to_models.json') as f:
-        __manufacturers_to_models_columns = json.load(f)
-
-
-    global __model_rfr
-    global __model_xgb
-
-    __model_rfr = joblib.load('artifacts/model_rfr.pkl')
-    __model_xgb = joblib.load('artifacts/model_xgb.pkl')
-
+    # Load model artifacts
+    _artifacts['model_rfr'] = joblib.load('artifacts/model_rfr.pkl')
+    _artifacts['model_xgb'] = joblib.load('artifacts/model_xgb.pkl')
 
 if __name__ == '__main__':
     load_artifacts()
-    print(__colors_columns)
-    print(get_exact_value(__colors_columns, 'Colors', 'Redui'))
-    print(__fuels)
-    print(__data_columns)
+    print(_artifacts['colors_columns'])
+    print(get_exact_value(_artifacts['colors_columns'], 'Colors', 'Redui'))
+    print(_artifacts['fuels'])
+    print(_artifacts['data_columns'])
