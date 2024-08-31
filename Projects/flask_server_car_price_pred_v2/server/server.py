@@ -33,8 +33,25 @@ def fetch_manufacturer_models(manufacturer_name):
     response.headers.add('Access-Content-Allow-Origin', '*')
     return response
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    # manufacturer = request.form['manufacturer']
+    if request.is_json:
+        data = request.get_json()
 
+        prediction = utils.predict_used_car_price(**data)
+        
+        response = jsonify({
+            f'predicteed price using {data['model_choice']}': prediction
+        })
 
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Content-Type', 'application/json')
+        return response
+    else:
+        # Handle the case where the Content-Type is not JSON
+        return jsonify({'error': 'Invalid content type, please send application/json'}), 400
+    
 if __name__ == '__main__':
     print('Starting flask server for used car price prediction...')
     utils.load_artifacts()

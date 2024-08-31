@@ -131,7 +131,8 @@ def predict_used_car_price(**kwargs):
     
     x_df = pd.DataFrame([x], columns=_artifacts['data_columns'])
     print(f"Predicting with {'XGBoostRegressor' if model_choice == 'model_xgb' else 'RandomForestRegressor'}...")
-    print(_artifacts[model_choice].predict(x_df)[0])
+    predicted_price = int(_artifacts[model_choice].predict(x_df)[0])
+    return predicted_price
 
 
 if __name__ == '__main__':
