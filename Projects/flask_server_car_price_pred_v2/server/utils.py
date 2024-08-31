@@ -77,30 +77,32 @@ def predict_used_car_price(**kwargs):
     """Util function to predict the price of a used car."""
     
     x = np.zeros(len(_artifacts['data_columns']))
-    
+    model_choice = ''
     for key, value in kwargs.items():
-        # value = value.title()
+
+        if type(value) == str:
+            value = value.title()
         
         if key == 'levy':
             x[0] = value
         
         elif key == 'manufacturer':
-            x[1] = get_exact_value(_artifacts['manufacturers_columns'], 'Manufacturers', value)
+            x[1] = get_exact_value('manufacturers_columns', 'Manufacturers', value)
         
         elif key == 'model':
-            x[2] = get_exact_value(_artifacts['models_columns'], 'Models', value)
+            x[2] = get_exact_value('models_columns', 'Models', value)
         
         elif key == 'prod_year':
             x[3] = value
         
         elif key == 'category':
-            x[4] = get_exact_value(_artifacts['categories_columns'], 'Categorys', value)
+            x[4] = get_exact_value('categories_columns', 'Categorys', value)
         
         elif key == 'interior':
             x[5] = 1 if value == 'Leather' else 0
         
         elif key == 'fuel_type':
-            x[6] = get_exact_value(_artifacts['fuel_types_columns'], 'Fuel_types', value)
+            x[6] = get_exact_value('fuel_types_columns', 'Fuel_types', value)
         
         elif key == 'engine_volume':
             x[7] = value
@@ -113,45 +115,46 @@ def predict_used_car_price(**kwargs):
             x[9] = value
         
         elif key == 'gear_box_type':
-            x[10] = get_exact_value(_artifacts['gear_box_types_columns'], 'Gear_box_types', value)
+            x[10] = get_exact_value('gear_box_types_columns', 'Gear_box_types', value)
         
         elif key == 'drive_wheel':
-            x[11] = get_exact_value(_artifacts['drive_wheels_columns'], 'Drive_wheelss', value)
+            x[11] = get_exact_value('drive_wheels_columns', 'Drive_wheelss', value)
         
         elif key == 'color':
-            x[12] = get_exact_value(_artifacts['colors_columns'], 'Colors', value)
+            x[12] = get_exact_value('colors_columns', 'Colors', value)
         
         elif key == 'airbag':
             x[13] = value
+
+        elif key == 'model_choice':
+            model_choice = 'model_xgb' if value.lower() == 'model_xgb' else 'model_rfr'
     
     x_df = pd.DataFrame([x], columns=_artifacts['data_columns'])
+    print(f"Predicting with {'XGBoostRegressor' if model_choice == 'model_xgb' else 'RandomForestRegressor'}...")
+    print(_artifacts[model_choice].predict(x_df)[0])
 
-    print('Predicting with XGBoostRegressor...')
-    print(_artifacts['model_xgb'].predict(x_df)[0])
-    print()
-    print('Predicting with RandomForestRegressor...')
-    print(_artifacts['model_rfr'].predict(x_df)[0])
 
 if __name__ == '__main__':
     load_artifacts()
     print(get_object_keys('colors'))
     # print(_artifacts['colors_columns'])
     print(get_exact_value('gear_box_types_columns', 'Gear_box_types','Automatic'))
-    print(get_manufacturer_models('acura'))
+    # print(get_manufacturer_models('acura'))
     # print('>>>>>>>>>>>....', _artifacts['colors'])
-    # print(_artifacts['data_columns'])
-    # print(predict_used_car_price(
-    #     levy=1234,
-    #     manufacturer='HonDa', 
-    #     model='Civic', 
-    #     category='sedan',
-    #     prod_year=2018, 
-    #     fuel_type='Petrol', 
-    #     color='Yellow', 
-    #     engine_volume=3.5, 
-    #     drive_wheel='4x4', 
-    #     airbag=10, 
-    #     cylinder=12, 
-    #     mileage=145000, 
-    #     interior='Leather')
-    # )
+    # print(_artifacts['manufacturers'])
+    print(predict_used_car_price(
+        levy=1234,
+        manufacturer='HonDa', 
+        model='Civic', 
+        category='sedan',
+        prod_year=2018, 
+        fuel_type='Petrol', 
+        color='Yellow', 
+        engine_volume=3.5, 
+        drive_wheel='4x4', 
+        airbag=10, 
+        cylinder=12, 
+        mileage=145000, 
+        interior='Leather',
+        model_choice='model_rfr')
+    )
