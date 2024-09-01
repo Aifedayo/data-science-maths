@@ -38,8 +38,8 @@
             </div>
             <div class="form-group">
                 <label for="prod_year">Production Year:</label>
-                <select id="prod_year" name="prod_year" selected="selected" disabled="disabled" required>
-                    <option value="">Select Year</option>
+                <select id="prod_year" name="prod_year" required>
+                    <option value="" selected="selected" disabled="disabled">Select Year</option>
                     <!-- Generate years from 1999 to 2100 -->
                 <script>
                     const yearSelect = document.getElementById("prod_year");
@@ -114,14 +114,14 @@
             </div>
             <div class="form-group">
                 <label>Model Choice:</label>
-                <label><input type="radio" name="model_choice" value="XGB" required> XGBoostRegressor</label>
-                <label><input type="radio" name="model_choice" value="RandomForestRegressor" required> RandomForestRegressor</label>
+                <label><input type="radio" name="model_choice" value="model_xgb" required> XGBoostRegressor</label>
+                <label><input type="radio" name="model_choice" value="model_rfr" required> RandomForestRegressor</label>
             </div>
             <div class="form-group">
                 <button type="button" onclick="onClickEstimatePrice()">Submit Form</button>
             </div>
         </form>
-        <div id="priceSection" class="price-container">
+        <div id="predictionSection" class="price-container">
             <h3>Estimated Price:</h3>
             <p id="estimatedPrice">Please fill out the form to see the estimated price.</p>
         </div>

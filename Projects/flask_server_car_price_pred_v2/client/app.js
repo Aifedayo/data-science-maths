@@ -3,21 +3,24 @@ async function onClickEstimatePrice() {
     const manufacturer = document.getElementById('manufacturer').value;
     const model = document.getElementById('model').value;
     const category = document.getElementById('category').value;
-    const prodYear = document.getElementById('prod_year').value;
+    const prod_year = document.getElementById('prod_year').value;
     const mileage = document.getElementById('mileage').value;
     const levy = document.getElementById('levy').value;
-    const gearBoxType = document.querySelector('input[name="gear_box_type"]:checked').value;
+    const fuel_type = document.getElementById('fuel_type').value;
+    const gear_box_type = document.getElementById('gear_box_type').value;
     const color = document.getElementById('color').value;
-    const engineVolume = document.getElementById('engine_volume').value;
-    const driveWheels = document.getElementById('drive_wheels').value;
+    const engine_volume = document.getElementById('engine_volume').value;
+    const drive_wheel = document.getElementById('drive_wheels').value;
     const airbag = document.getElementById('airbag').value;
     const cylinder = document.getElementById('cylinder').value;
     const interior = document.getElementById('interior').value;
-    const modelChoice = document.querySelector('input[name="model_choice"]:checked').value;
+    const model_choice = document.querySelector('input[name="model_choice"]:checked').value;
+
+    const predictionSection = document.getElementById('predictionSection')
 
     // Validate the inputs (optional, depending on your requirements)
-    if (!manufacturer || !model || !category || !prodYear || !mileage || !levy ||
-        !gearBoxType || !color || !engineVolume || !driveWheels || !airbag || !cylinder || !interior || !modelChoice) {
+    if (!manufacturer || !model || !category || !prod_year || !mileage || !levy || !fuel_type ||
+        !gear_box_type || !color || !engine_volume || !drive_wheels || !cylinder || !interior || !model_choice) {
         alert("Please fill out all fields.");
         return;
     }
@@ -27,32 +30,31 @@ async function onClickEstimatePrice() {
         manufacturer: manufacturer,
         model: model,
         category: category,
-        prodYear: prodYear,
+        prod_year: prod_year,
         mileage: parseInt(mileage),
         levy: parseInt(levy),
-        gearBoxType: gearBoxType,
+        fuel_type: fuel_type,
+        gear_box_type: gear_box_type,
         color: color,
-        engineVolume: parseFloat(engineVolume),
-        driveWheels: driveWheels,
+        engine_volume: parseFloat(engine_volume),
+        drive_wheel: drive_wheel,
         airbag: parseInt(airbag),
         cylinder: parseInt(cylinder),
         interior: interior,
-        modelChoice: modelChoice
+        model_choice: model_choice
     };
-
-    // Log the form data to the console (for debugging purposes)
-    console.log('Form Data:', formData);
     
     try {
         const response = await fetch('http://localhost:5000/estimate-price', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(formData)
         });
         const result = await response.json();
-        console.log('Estimated Price:', result.estimatedPrice);
+        predictionSection.innerHTML = `<h2>${result.predicted_price}</h2>`;
     } catch (error) {
         console.error('Error:', error);
     }

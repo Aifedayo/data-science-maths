@@ -41,7 +41,7 @@ def predict():
         prediction = utils.predict_used_car_price(**data)
         
         response = jsonify({
-            f'predicted price using {data['model_choice']}': prediction
+            f'predicted_price': prediction
         })
 
         response.headers.add('Access-Control-Allow-Origin', '*')
