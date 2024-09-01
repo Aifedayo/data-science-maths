@@ -38,12 +38,12 @@
             </div>
             <div class="form-group">
                 <label for="prod_year">Production Year:</label>
-                <select id="prod_year" name="prod_year" required>
+                <select id="prod_year" name="prod_year" selected="selected" disabled="disabled" required>
                     <option value="">Select Year</option>
                     <!-- Generate years from 1999 to 2100 -->
                 <script>
                     const yearSelect = document.getElementById("prod_year");
-                    for (let year = 1980; year <= 2100; year++) {
+                    for (let year = 1980; year <= 2050; year++) {
                         yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
                     }
                 </script>
@@ -122,6 +122,5 @@
             </div>
         </form>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
