@@ -33,9 +33,8 @@ def fetch_manufacturer_models(manufacturer_name):
     response.headers.add('Access-Content-Allow-Origin', '*')
     return response
 
-@app.route('/predict', methods=['POST'])
+@app.route('/estimate-price', methods=['POST'])
 def predict():
-    # manufacturer = request.form['manufacturer']
     if request.is_json:
         data = request.get_json()
 

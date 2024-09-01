@@ -1,3 +1,64 @@
+async function onClickEstimatePrice() {
+    // Get selected values from the dropdowns and input fields
+    const manufacturer = document.getElementById('manufacturer').value;
+    const model = document.getElementById('model').value;
+    const category = document.getElementById('category').value;
+    const prodYear = document.getElementById('prod_year').value;
+    const mileage = document.getElementById('mileage').value;
+    const levy = document.getElementById('levy').value;
+    const gearBoxType = document.querySelector('input[name="gear_box_type"]:checked').value;
+    const color = document.getElementById('color').value;
+    const engineVolume = document.getElementById('engine_volume').value;
+    const driveWheels = document.getElementById('drive_wheels').value;
+    const airbag = document.getElementById('airbag').value;
+    const cylinder = document.getElementById('cylinder').value;
+    const interior = document.getElementById('interior').value;
+    const modelChoice = document.querySelector('input[name="model_choice"]:checked').value;
+
+    // Validate the inputs (optional, depending on your requirements)
+    if (!manufacturer || !model || !category || !prodYear || !mileage || !levy ||
+        !gearBoxType || !color || !engineVolume || !driveWheels || !airbag || !cylinder || !interior || !modelChoice) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    // Create an object with the selected values (for sending to the backend)
+    const formData = {
+        manufacturer: manufacturer,
+        model: model,
+        category: category,
+        prodYear: prodYear,
+        mileage: parseInt(mileage),
+        levy: parseInt(levy),
+        gearBoxType: gearBoxType,
+        color: color,
+        engineVolume: parseFloat(engineVolume),
+        driveWheels: driveWheels,
+        airbag: parseInt(airbag),
+        cylinder: parseInt(cylinder),
+        interior: interior,
+        modelChoice: modelChoice
+    };
+
+    // Log the form data to the console (for debugging purposes)
+    console.log('Form Data:', formData);
+    
+    try {
+        const response = await fetch('http://localhost:5000/estimate-price', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+        console.log('Estimated Price:', result.estimatedPrice);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const manufacturerSelect = document.getElementById('manufacturer');
     const modelSelect = document.getElementById('model');
@@ -181,7 +242,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error: ', error);
         }
     }
-
 
     function populateSelect(selectElement, options) {
         options.forEach(option => {
