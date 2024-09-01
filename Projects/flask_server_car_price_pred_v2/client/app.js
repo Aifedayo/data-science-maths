@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 manufacturers.sort((a, b) => a.localeCompare(b));
 
-                manufacturerSelect.innerHTML = '<option value="">Select Manufacturer</option>';
+                manufacturerSelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Manufacturer</option>';
                 populateSelect(manufacturerSelect, manufacturers);
                 let otherOption = document.createElement('option');
                 otherOption.value = "other";
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 models.sort((a,b) => a.localeCompare(b));
 
-                modelSelect.innerHTML = '<option value="">Select Model</option>';
+                modelSelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Model</option>';
                 populateSelect(modelSelect, models || []);
                 modelSelect.innerHTML += '<option value="other">Other</option>';
             }
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 categories.sort((a, b) => a.localeCompare(b));
     
                 // Clear existing options and populate the select dropdown
-                categorySelect.innerHTML = '<option value="">Select Category</option>';
+                categorySelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Category</option>';
                 populateSelect(categorySelect, categories);
                 let otherOption = document.createElement('option');
                 otherOption.value = "other";
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 colors.sort((a, b) => a.localeCompare(b));
     
                 // Clear existing options and populate the select dropdown
-                colorSelect.innerHTML = '<option value="">Select Color</option>';
+                colorSelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Color</option>';
                 populateSelect(colorSelect, colors);
                 let otherOption = document.createElement('option');
                 otherOption.value = "other";
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 gear_boxes.sort((a,b) => a.localeCompare(b))
 
-                gearBoxSelect.innerHTML = '<option value="">Select Gear Box</option>';
+                gearBoxSelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Gear Box</option>';
                 populateSelect(gearBoxSelect, gear_boxes);
                 let otherOption = document.createElement('option');
                 otherOption.value = "other";
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let fuels = data.objects;
 
                 fuels.sort((a,b) => a.localeCompare(b));
-                fuelTypeSelect.innerHTML = '<option value="">Select Fuel Type</option>';
+                fuelTypeSelect.innerHTML = '<option value="" selected="selected" disabled="disabled">Select Fuel Type</option>';
                 populateSelect(fuelTypeSelect, fuels);
                 let otherOption = document.createElement('option');
                 otherOption.value = 'other';
