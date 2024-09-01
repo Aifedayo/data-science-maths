@@ -55,7 +55,15 @@
             </div>
             <div class="form-group">
                 <label for="levy">Levy:</label>
-                <input type="number" id="levy" name="levy" required>
+                <input type="number" id="levy" name="levy" placeholder="e.g 1500" required>
+            </div>
+            <div class="form-group">
+                <label for="fuel_type">Fuel Type:</label>
+                <select id="fuel_type" name="fuel_type" required>
+                    <option value="">Select Fuel Type</option>
+                    <!-- Options will be dynamically populated -->
+                    <option value="other">Other</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="gear_box_type">Gear Box Type:</label>

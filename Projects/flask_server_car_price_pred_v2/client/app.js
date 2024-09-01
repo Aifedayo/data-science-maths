@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modelSelect = document.getElementById('model');
     const categorySelect = document.getElementById('category');
     const colorSelect = document.getElementById('color');
-    const driveWheelsSelect = document.getElementById('drive_wheels');
+    const fuelTypeSelect = document.getElementById('fuel_type');
     const prodYearSelect = document.getElementById('prod_year');
     const gearBoxSelect = document.getElementById('gear_box_type');
 
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchManufacturers();
     fetchCategories();
     fetchColors();
-    fetchDriveWheels();
     fetchGearBoxType();
 
     manufacturerSelect.addEventListener('change', function () {
@@ -138,8 +137,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 throw new Error('Network response was not ok!')
             }
-            const data = response.json()
-            if (data) {
+            const data = await response.json()
+            if (data && data.objects) {
                 let gear_boxes = data.objects;
 
                 gear_boxes.sort((a,b) => a.localeCompare(b))
