@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Details Form</title>
     <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
 </head>
 <body>
     <div class="form-container">
         <form id="car-details-form">
-            <h2 class="title__heading">Car Price Prediction Form v2</h2>
+            <h2 class="title__heading">
+                Car Price Prediction Form v2
+            </h2>
             <div class="form-group">
                 <label for="manufacturer">Manufacturer:</label>
                 <select id="manufacturer" name="manufacturer" required>
-                    <option value="">Select Manufacturer</option>
+                    <option value="" disabled="disabled" selected="selected">Select Manufacturer</option>
                     <!-- Options will be dynamically populated -->
                     <option value="other">Other</option>
                 </select>
