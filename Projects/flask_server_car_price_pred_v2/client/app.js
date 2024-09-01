@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchCategories();
     fetchColors();
     fetchDriveWheels();
+    fetchGearBoxType();
 
     manufacturerSelect.addEventListener('change', function () {
         fetchModels(this.value);
