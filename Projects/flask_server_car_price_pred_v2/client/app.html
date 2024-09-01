@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details Form</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="form-container">
+        <form id="car-details-form">
+            <h2 class="title__heading">Car Price Prediction Form v2</h2>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer:</label>
+                <select id="manufacturer" name="manufacturer" required>
+                    <option value="">Select Manufacturer</option>
+                    <!-- Options will be dynamically populated -->
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="model">Model:</label>
+                <select id="model" name="model" required>
+                    <option value="">Select Model</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <!-- Options will be dynamically populated -->
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="prod_year">Production Year:</label>
+                <select id="prod_year" name="prod_year" required>
+                    <option value="">Select Year</option>
+                    <!-- Generate years from 1999 to 2100 -->
+                <script>
+                    const yearSelect = document.getElementById("prod_year");
+                    for (let year = 1980; year <= 2100; year++) {
+                        yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+                    }
+                </script>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mileage">Mileage:</label>
+                <input type="number" id="mileage" name="mileage" placeholder="Mileage Driven e.g 134500" required>
+            </div>
+            <div class="form-group">
+                <label for="levy">Levy:</label>
+                <input type="number" id="levy" name="levy" required>
+            </div>
+            <div class="form-group">
+                <label for="gear_box_type">Gear Box Type:</label>
+                <label><input type="checkbox" name="gear_box_type" value="manual"> Manual</label>
+                <label><input type="checkbox" name="gear_box_type" value="automatic"> Automatic</label>
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <select id="color" name="color" required>
+                    <option value="">Select Color</option>
+                    <!-- Options will be dynamically populated -->
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="engine_volume">Engine Volume:</label>
+                <input type="number" step="0.1" id="engine_volume" name="engine_volume" required>
+            </div>
+            <div class="form-group">
+                <label for="drive_wheels">Drive Wheels:</label>
+                <select id="drive_wheels" name="drive_wheels" required>
+                    <option value="">Select Drive Wheels</option>
+                    <!-- Options will be dynamically populated -->
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="airbag">Airbags:</label>
+                <input type="number" id="airbag" name="airbag" required>
+            </div>
+            <div class="form-group">
+                <label for="cylinder">Cylinders:</label>
+                <input type="number" id="cylinder" name="cylinder" required>
+            </div>
+            <div class="form-group">
+                <label for="interior">Interior:</label>
+                <select id="interior" name="interior" required>
+                    <option value="">Select Interior</option>
+                    <option value="leather">Leather</option>
+                    <option value="fabric">Fabric</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Model Choice:</label>
+                <label><input type="radio" name="model_choice" value="XGB" required> XGB</label>
+                <label><input type="radio" name="model_choice" value="RandomForestRegressor" required> RandomForestRegressor</label>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
