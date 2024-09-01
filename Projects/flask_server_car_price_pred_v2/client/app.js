@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchCategories();
     fetchColors();
     fetchGearBoxType();
+    fetchFuelType();
 
     manufacturerSelect.addEventListener('change', function () {
         fetchModels(this.value);
@@ -152,6 +153,32 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         } catch (error) {
             console.error('Error: ', error)
+        }
+    }
+
+    async function fetchFuelType() {
+        const url = 'http://localhost:5000/object/fuels';
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Network response was not OK!')
+            }
+            const data = await response.json()
+
+            if (data && data.objects) {
+                let fuels = data.objects;
+
+                fuels.sort((a,b) => a.localeCompare(b));
+                fuelTypeSelect.innerHTML = '<option value="">Select Fuel Type</option>';
+                populateSelect(fuelTypeSelect, fuels);
+                let otherOption = document.createElement('option');
+                otherOption.value = 'other';
+                otherOption.textContent = 'Other';
+                fuelTypeSelect.appendChild(otherOption);
+            }
+        } catch (error) {
+            console.error('Error: ', error);
         }
     }
 
