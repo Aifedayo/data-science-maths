@@ -1,5 +1,15 @@
-FROM python:3.8-alpine
-COPY . /app
+# Use an official Python runtime as a parent image
+FROM python:3.12
+
+# Set the working directory in the container
 WORKDIR /app
-RUN pip install -r requirements.txt
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install Werkzeug==0.16.1 
+
+# Run app.py when the container launches
 CMD python app.py
