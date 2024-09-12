@@ -1,0 +1,11 @@
+# To run multiple containers and to interact with each other
+version: '3.0'
+services:
+  web:
+    image: web-app
+    build: .
+    ports:
+      - "8000:5000" # host port to container port
+  redis:
+    image: redis
+  

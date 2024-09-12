@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.8
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 COPY . /app
 
 RUN pip install -r requirements.txt
-RUN pip install Werkzeug==0.16.1 
 
+EXPOSE 5000
 
-
+CMD ["flask", "run"]
